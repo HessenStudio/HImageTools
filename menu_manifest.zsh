@@ -1,5 +1,5 @@
 #!/bin/zsh
-# menu_manifest.zsh - ImageMagickTools 功能清單配置 (V4.5 終極完全版)
+# menu_manifest.zsh - HImageTools 功能清單配置 (V4.5 終極完全版)
 # 格式：唯一ID | 父節點ID | 標題 | 描述 | 動作類型:參數
 
 IMG_MENU_DATA=(
@@ -292,7 +292,7 @@ IMG_MENU_DATA=(
 
 # --- 輔助函數 ---
 img-sys-info() {
-    echo "\033[1;36m--- ImageMagickTools 系統診斷 ---\033[0m"
+    echo "\033[1;36m--- HImageTools 系統診斷 ---\033[0m"
     echo "📂 當前工作路徑: $(pwd)"
     echo "🖼️ 圖片匹配模式: $_IMG_PATTERN"
     echo "--------------------------------"

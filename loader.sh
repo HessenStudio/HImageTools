@@ -1,5 +1,5 @@
 #!/bin/zsh
-# loader.sh - ImageMagick 工具集主加載器 (原子化模組版本)
+# loader.sh - HImageTools 藝術工具集主加載器 (原子化模組版本)
 
 # 1. 確保全局路徑變數 (絕對路徑)
 export _IMG_ROOT="$(cd "$(dirname "$0")" && pwd)"
@@ -41,5 +41,5 @@ source "$_IMG_ROOT/menu_manifest.zsh"
 source "$_IMG_ROOT/artify_main.zsh"
 source "$_IMG_ROOT/styles/misc.zsh"
 
-echo "🖼️  ImageMagick 工具集 (V2.2 模組化旗艦版) 已加載完成"
+echo "🖼️  HImageTools 藝術工具集 (V2.2 模組化旗艦版) 已加載完成"
 echo "   輸入 img-artify 啟動全功能交互選單"

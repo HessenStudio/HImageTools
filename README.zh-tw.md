@@ -1,4 +1,4 @@
-# 🖼️ ImageMagickTools
+# 🖼️ HImageTools
 
 > 基於 **ImageMagick 7** 與可選 **rembg** 的模組化 **Zsh** 工具集：批量圖片處理與藝術風格濾鏡，預設輸出至 `./processed/`。
 
@@ -6,7 +6,7 @@
 [![ImageMagick](https://img.shields.io/badge/ImageMagick-7.x-blue.svg)](https://imagemagick.org/)
 [![Shell](https://img.shields.io/badge/Shell-Zsh-orange.svg)](https://www.zsh.org/)
 
-**English documentation:** [README.en.md](README.en.md)
+**English documentation:** [README.md](README.md)
 
 ---
 
@@ -35,12 +35,12 @@
 ### 載入
 
 ```bash
-git clone https://github.com/<你的帳號>/ImageMagickTools.git
-cd ImageMagickTools
+git clone https://github.com/<你的帳號>/HImageTools.git
+cd HImageTools
 source ./loader.sh
 ```
 
-建議將 `source /path/to/ImageMagickTools/loader.sh` 寫入 `~/.zshrc`。
+建議將 `source /path/to/HImageTools/loader.sh` 寫入 `~/.zshrc`。
 
 ### 指令格式約定
 
@@ -370,7 +370,7 @@ source ./loader.sh
 ## 📁 專案結構（摘）
 
 ```
-ImageMagickTools/
+HImageTools/
   loader.sh          # 入口：依序 source 各模組
   config.zsh         # 共用設定與併發／守護邏輯
   basic.zsh          # 縮放、轉檔、裁切、GIF
@@ -386,7 +386,7 @@ ImageMagickTools/
 
 [MIT License](LICENSE)
 
-Copyright © 2026 ImageMagickTools 貢獻者
+Copyright © 2026 HImageTools 貢獻者
 
 ---
 

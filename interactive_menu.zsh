@@ -1,5 +1,5 @@
 #!/bin/zsh
-# interactive_menu.zsh - ImageMagickTools 宣告式選單引擎 (V3.0)
+# interactive_menu.zsh - HImageTools 宣告式選單引擎 (V3.0)
 
 # 導覽棧：記錄當前路徑 (ID)
 typeset -a _IMG_NAV_STACK

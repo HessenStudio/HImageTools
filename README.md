@@ -1,4 +1,4 @@
-# 🖼️ ImageMagickTools
+# 🖼️ HImageTools
 
 > A modular **Zsh** toolkit for batch image processing and artistic filters, powered by **ImageMagick 7** and optional **rembg**. Outputs go to `./processed/` by default.
 
@@ -35,12 +35,12 @@
 ### Load the toolkit
 
 ```bash
-git clone https://github.com/<you>/ImageMagickTools.git
-cd ImageMagickTools
+git clone https://github.com/<you>/HImageTools.git
+cd HImageTools
 source ./loader.sh
 ```
 
-Add `source /path/to/ImageMagickTools/loader.sh` to `~/.zshrc` if you want it permanently.
+Add `source /path/to/HImageTools/loader.sh` to `~/.zshrc` if you want it permanently.
 
 ### Command conventions
 
@@ -371,7 +371,7 @@ Notable variables (you may override before sourcing):
 ## 📁 Layout
 
 ```
-ImageMagickTools/
+HImageTools/
   loader.sh
   config.zsh
   basic.zsh
@@ -387,7 +387,7 @@ The on-disk help from `img-artify` (no args) should match this file; if anything
 
 [MIT License](LICENSE)
 
-Copyright © 2026 ImageMagickTools contributors
+Copyright © 2026 HImageTools contributors
 
 ---
 
