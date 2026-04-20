@@ -77,6 +77,7 @@ Our most powerful feature. Automatically applies **100+ artistic styles** to all
 - **Command**: `img-artify-all [directory]` (defaults to `./`)
 - **Output**: Creates an `artify_gallery/` folder with subdirectories for each source image.
 - **Gallery**: Master-Detail sidebar navigation, grid layout, lightbox, and resume support.
+![Gallery screenshot](./assets/previews/previews.webp)
 
 ### 2. Style Self-Test
 Designed for environment verification or development debugging. Runs all filters on the built-in system logo.

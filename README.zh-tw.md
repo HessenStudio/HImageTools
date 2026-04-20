@@ -77,6 +77,7 @@ source ./loader.sh
 - **指令**：`img-artify-all [目錄]` （若不輸入則預設為當前目錄 `./`）
 - **輸出**：在目標目錄下建立 `artify_gallery/` 資料夾，內含每張原圖的風格子目錄。
 - **畫廊特性**：Master-Detail 側邊欄導航、九宮格佈局、全屏燈箱、斷點續傳。
+![畫廊範例](./assets/previews/previews.webp)
 
 ### 2. 一鍵風格自檢 (Style Self-Test)
 主要用於安裝後的環境驗證或開發調試，使用系統內建 Logo 自動驗證所有濾鏡。
