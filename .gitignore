@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Outputs
+processed/
+test_results/
+artify_gallery/
+style_test_report/
+
+# Temp & Logs
+*.mpc
+*.cache
+*.bak
