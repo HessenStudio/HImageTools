@@ -6,7 +6,7 @@
 [![ImageMagick](https://img.shields.io/badge/ImageMagick-7.x-blue.svg)](https://imagemagick.org/)
 [![Shell](https://img.shields.io/badge/Shell-Zsh-orange.svg)](https://www.zsh.org/)
 
-**English documentation:** [README.md](README.md)
+[English](README.md) | **繁體中文**
 
 ---
 
