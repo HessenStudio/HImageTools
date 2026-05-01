@@ -14,6 +14,7 @@ source "$_IMG_ROOT/rembg.zsh"
 # 4. 加載藝術風格模組
 source "$_IMG_ROOT/styles/oil.zsh"
 source "$_IMG_ROOT/styles/sketch.zsh"
+source "$_IMG_ROOT/styles/ballpoint.zsh"
 source "$_IMG_ROOT/styles/watercolor.zsh"
 source "$_IMG_ROOT/styles/vin_wc.zsh"
 source "$_IMG_ROOT/styles/vintage.zsh"

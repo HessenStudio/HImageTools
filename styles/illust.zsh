@@ -7,17 +7,16 @@ _img_artify_illust() {
     [[ "$sub_style" == "$style" ]] && sub_style="standard"
 
     local W H
-    W=$(magick identify -format "%w" "$f")
-    H=$(magick identify -format "%h" "$f")
+    read W H < <(magick identify -auto-orient -format "%w %h" "$f")
 
     # --- 動態縮放係數 (以 1200px 為基準) ---
-    local scale=$(magick identify -format "%[fx:(w+h)/2400]" "$f")
+    local scale=$(magick identify -auto-orient -format "%[fx:(w+h)/2400]" "$f")
     [[ "$scale" == "0" ]] && scale=1 # 防止極小圖片報錯
 
     # --- 核心參數 (動態縮放版) ---
     local base_smooth=10
-    local smoothing=$(magick identify -format "%[fx:round($base_smooth * $scale)]" "$f")
-    local median_size=$(magick identify -format "%[fx:round(3 * $scale)]" "$f")
+    local smoothing=$(magick identify -auto-orient -format "%[fx:round($base_smooth * $scale)]" "$f")
+    local median_size=$(magick identify -auto-orient -format "%[fx:round(3 * $scale)]" "$f")
     [[ $median_size -lt 1 ]] && median_size=1
 
     local edge_gain=5
@@ -26,8 +25,8 @@ _img_artify_illust() {
     local saturation=145
 
     case "$sub_style" in
-        soft)     smoothing=$(magick identify -format "%[fx:round(14 * $scale)]" "$f"); edge_gain=4; mixing=40 ;;
-        detailed) smoothing=$(magick identify -format "%[fx:round(6 * $scale)]" "$f");  edge_gain=6; mixing=65 ;;
+        soft)     smoothing=$(magick identify -auto-orient -format "%[fx:round(14 * $scale)]" "$f"); edge_gain=4; mixing=40 ;;
+        detailed) smoothing=$(magick identify -auto-orient -format "%[fx:round(6 * $scale)]" "$f");  edge_gain=6; mixing=65 ;;
     esac
 
     local tmp_dir=$(mktemp -d -t illust_XXXXXXXX)
@@ -37,7 +36,7 @@ _img_artify_illust() {
     # =========================================================================
     # STEP 1：生成高品質水彩紙紋理 (縮放 blur 以保持顆粒感)
     # =========================================================================
-    local paper_blur=$(magick identify -format "%[fx:1.5 * $scale]" "$f")
+    local paper_blur=$(magick identify -auto-orient -format "%[fx:1.5 * $scale]" "$f")
     magick -size "${W}x${H}" xc:"rgb(250,248,242)" \
         -attenuate 0.05 +noise Gaussian \
         -blur 0x${paper_blur} -level 80%,100% \
@@ -63,7 +62,7 @@ _img_artify_illust() {
     # =========================================================================
     # STEP 5：紙張合成與最終色彩校正
     # =========================================================================
-    local us_radius=$(magick identify -format "%[fx:1.0 * $scale]" "$f")
+    local us_radius=$(magick identify -auto-orient -format "%[fx:1.0 * $scale]" "$f")
     magick "$paper" "$wc_core" -compose Multiply -composite \
         -brightness-contrast -2x8 \
         -gamma 0.95 \

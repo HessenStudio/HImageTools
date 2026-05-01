@@ -7,9 +7,8 @@ _img_artify_handpaint() {
     [[ "$sub_style" == "$style" ]] && sub_style="standard"
 
     local W H
-    W=$(magick identify -format "%w" "$f")
-    H=$(magick identify -format "%h" "$f")
-    local scale=$(magick identify -format "%[fx:(w+h)/2400]" "$f")
+    read W H < <(magick identify -auto-orient -format "%w %h" "$f")
+    local scale=$(magick identify -auto-orient -format "%[fx:(w+h)/2400]" "$f")
     [[ "$scale" == "0" ]] && scale=1
 
     # --- 核心參數設計 (融合 Fred's 算法參數) ---
@@ -22,16 +21,16 @@ _img_artify_handpaint() {
 
     case "$sub_style" in
         vibrant) # 鮮豔鋼筆淡彩 (強墨線)
-            smoothing=$(magick identify -format "%[fx:round(15 * $scale)]" "$f")
+            smoothing=$(magick identify -auto-orient -format "%[fx:round(15 * $scale)]" "$f")
             edge_gain=6; line_mix=0.75; contrast=8; saturation=170; line_method="sobel" ;;
         soft)    # 柔和鉛筆彩繪 (基於 Fred's sketch.sh 的 ColorDodge 線條)
-            smoothing=$(magick identify -format "%[fx:round(22 * $scale)]" "$f")
+            smoothing=$(magick identify -auto-orient -format "%[fx:round(22 * $scale)]" "$f")
             edge_gain=3; line_mix=0.5; contrast=4; saturation=120; line_method="dodge" ;;
         heavy)   # 厚重藝術 (重墨線)
-            smoothing=$(magick identify -format "%[fx:round(12 * $scale)]" "$f")
+            smoothing=$(magick identify -auto-orient -format "%[fx:round(12 * $scale)]" "$f")
             edge_gain=8; line_mix=0.85; contrast=10; saturation=160; line_method="sobel" ;;
         standard|*)
-            smoothing=$(magick identify -format "%[fx:round(18 * $scale)]" "$f")
+            smoothing=$(magick identify -auto-orient -format "%[fx:round(18 * $scale)]" "$f")
             line_method="sobel"
             ;;
     esac
@@ -42,7 +41,7 @@ _img_artify_handpaint() {
     local line_layer="$tmp_dir/lines.png"
 
     # 1. 生成紙張 (增加壓紋感)
-    local paper_blur=$(magick identify -format "%[fx:1.2 * $scale]" "$f")
+    local paper_blur=$(magick identify -auto-orient -format "%[fx:1.2 * $scale]" "$f")
     magick -size "${W}x${H}" xc:"rgb(250,248,242)" \
         -attenuate 0.05 +noise Gaussian -blur 0x${paper_blur} -level 80%,100% "$paper"
 
@@ -57,7 +56,7 @@ _img_artify_handpaint() {
             -delete 0 -transparent white "$line_layer"
     else
         # 參考 Fred's sketch.sh：ColorDodge 產生類似鉛筆稿的柔和線條
-        local blur_s=$(magick identify -format "%[fx:2.5 * $scale]" "$f")
+        local blur_s=$(magick identify -auto-orient -format "%[fx:2.5 * $scale]" "$f")
         magick "$f" -auto-orient -colorspace Gray \
             \( +clone -negate -blur 0x${blur_s} \) \
             -compose colordodge -composite -normalize \
@@ -65,7 +64,7 @@ _img_artify_handpaint() {
     fi
 
     # 3. 處理抽象色彩塊 (Mean-Shift 簡化)
-    local median_s=$(magick identify -format "%[fx:round(3 * $scale)]" "$f")
+    local median_s=$(magick identify -auto-orient -format "%[fx:round(3 * $scale)]" "$f")
     magick "$f" -auto-orient \
         -statistic Median ${median_s}x${median_s} \
         -sigmoidal-contrast ${contrast}x50% \
@@ -81,7 +80,7 @@ _img_artify_handpaint() {
     # 疊加墨線層 (Multiply 確保線條與色彩自然融合)
     magick "$tmp_dir/base.png" "$line_layer" \
         -compose Multiply -define compose:args="$line_mix" -composite \
-        -unsharp 0x$(magick identify -format "%[fx:0.8 * $scale]" "$f")+0.5+0 \
+        -unsharp 0x$(magick identify -auto-orient -format "%[fx:0.8 * $scale]" "$f")+0.5+0 \
         -quality 95 "$output"
 
     rm -rf "$tmp_dir"

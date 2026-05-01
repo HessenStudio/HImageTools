@@ -118,6 +118,7 @@ IMG_MENU_DATA=(
     "sub_oil     | cat_classic | 🖼️ 專業油畫 | 古典、印象、表現、厚塗 | folder"
     "sub_sk      | cat_classic | ✏️ 素描風格 | 精細、粗獷、標準 | folder"
     "sub_ch      | cat_classic | ✒️ 炭筆風格 | 標準、重墨、顆粒 | folder"
+    "sub_bp      | cat_classic | 🖊️ 原子筆手繪 | 經典藍色原子筆、筆記本、精細 | folder"
 
     # --- 1.3.1 水彩細項 ---
     "wc_type_a   | sub_wc_grp  | 🌿 清新水彩 (Series A) | 基於 Fred's 積墨邏輯 | folder"
@@ -146,6 +147,11 @@ IMG_MENU_DATA=(
     "ch_std      | sub_ch | 標準炭筆 | 炭條繪畫感 | cmd:img-artify charcoal"
     "ch_hvy      | sub_ch | 重墨炭筆 | 濃郁的黑白對比 | cmd:img-artify charcoal:heavy"
     "ch_grn      | sub_ch | 顆粒炭筆 | 強烈的炭粉質感 | cmd:img-artify charcoal:grain"
+
+    # --- 1.3.4 原子筆細項 ---
+    "bp_nb       | sub_bp | 藍色原子筆 (筆記本) | 經典原子筆帶筆記本底線 | cmd:img-artify ballpoint:notebook"
+    "bp_fine     | sub_bp | 藍色原子筆 (細線條) | 纖細、連貫、高質感的純線條 | cmd:img-artify ballpoint:fine"
+    "bp_hvy      | sub_bp | 藍色原子筆 (重墨) | 強化線條感的原子筆風格 | cmd:img-artify ballpoint:heavy"
 
     # ==========================================
     # --- 1.4 復古時光系列 ---

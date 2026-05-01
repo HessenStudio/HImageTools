@@ -20,6 +20,8 @@ _img_artify_dispatch() {
         _img_artify_sketch "$work_img" "$output" "$style"
     elif [[ "$style" == charcoal* ]]; then
         _img_artify_charcoal "$work_img" "$output" "$style"
+    elif [[ "$style" == ballpoint* ]]; then
+        _img_artify_ballpoint "$work_img" "$output" "$style"
     elif [[ "$style" == watercolor* ]]; then
         _img_artify_watercolor "$work_img" "$output" "$style"
     elif [[ "$style" == vin-wc* ]]; then
@@ -125,6 +127,7 @@ img-artify() {
         echo "    watercolor[:wet|sketch|soft] - 水彩風格 (無子風格時為標準水彩)"
         echo "    sketch[:fine|heavy] - 素描風格 (無子風格時為標準素描)"
         echo "    charcoal[:heavy|grain] - 炭筆畫風格 (預設: standard)"
+        echo "    ballpoint[:notebook|fine|heavy] - 原子筆手繪風格 (預設: notebook)"
         echo "    vin-wc[:decay|heavy|vibrant|antique] - 復古水彩手撕邊 (終極版)"
         echo ""
         echo "  【3. 復古與底片風格 (Retro & Vintage)】"
