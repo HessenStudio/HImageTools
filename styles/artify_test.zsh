@@ -13,10 +13,14 @@ img-artify-test() {
     local test_source="${out_base}/test_source.png"
     magick logo: -resize 800x "$test_source"
     
-    # 2. 獲取所有風格
-    local manifest="${_IMG_ROOT}/menu_manifest.zsh"
+    # 2. 獲取所有風格 (從動態註冊器獲取)
     local -a artify_cmds
-    artify_cmds=($(grep "cmd:img-artify" "$manifest" | sed -E 's/.*cmd:img-artify ([^"]+).*/\1/'))
+    artify_cmds=($(_img_get_all_artify_styles))
+
+    if [[ ${#artify_cmds[@]} -eq 0 ]]; then
+        echo "❌ 找不到任何已註冊的藝術風格。請確認已正確載入插件。"
+        return 1
+    fi
 
     echo "🧪 啟動一鍵風格自檢..."
     echo "📊 風格總數: ${#artify_cmds[@]} 種"

@@ -24,15 +24,14 @@ img-artify-all() {
         return 1
     fi
 
-    # 2. 取得所有風格
-    local manifest="${_IMG_ROOT}/menu_manifest.zsh"
-    if [[ ! -f "$manifest" ]]; then
-        echo "❌ 找不到功能清單: $manifest"
+    # 2. 取得所有風格 (從動態註冊器獲取)
+    local -a artify_cmds
+    artify_cmds=($(_img_get_all_artify_styles))
+
+    if [[ ${#artify_cmds[@]} -eq 0 ]]; then
+        echo "❌ 找不到任何已註冊的藝術風格。請確認已正確載入插件。"
         return 1
     fi
-
-    local -a artify_cmds
-    artify_cmds=($(grep "cmd:img-artify" "$manifest" | sed -E 's/.*cmd:img-artify ([^"]+).*/\1/'))
 
     echo "🎨 啟動一鍵藝術化全家桶！"
     echo "📦 目標: ${#files[@]} 張圖片 | 🎨 風格: ${#artify_cmds[@]} 種"

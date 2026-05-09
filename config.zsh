@@ -152,6 +152,24 @@ _img_registry_build_menu() {
     done <<< "$raw_data"
 }
 
+# 獲取所有已註冊的藝術風格 (用於一鍵全家桶與自檢)
+_img_get_all_artify_styles() {
+    local -a styles
+    for entry in "${IMG_MENU_DATA[@]}"; do
+        if [[ "$entry" == *cmd:img-artify* ]]; then
+            local cmd_part="${entry#*cmd:img-artify }"
+            # 去除可能存在的引號或多餘空格
+            cmd_part="${cmd_part//\"/}"
+            cmd_part="${cmd_part#"${cmd_part%%[![:space:]]*}"}"
+            # 取得第一個參數 (風格名:子風格)
+            local s="${cmd_part%% *}"
+            [[ -n "$s" && "$s" != "marker:palette" ]] && styles+=("$s")
+        fi
+    done
+    # 輸出不重複的風格列表
+    echo "${(u)styles[@]}"
+}
+
 # 顯示批量處理進度
 _img_show_progress() {
     local current=$1
