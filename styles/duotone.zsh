@@ -1,6 +1,12 @@
 #!/bin/zsh
 # styles/duotone.zsh - 專業雙色調風格模組 (Pro Version)
 
+# @menu: art_duo     | cat_modern | 雙色調   | 專業雙色調質感 | folder
+# @menu: duo_wrm     | art_duo | 溫暖色調 (Warm) | | cmd:img-artify duotone:warm
+# @menu: duo_col     | art_duo | 冷峻色調 (Cool) | | cmd:img-artify duotone:cool
+# @menu: duo_neo     | art_duo | 霓虹雙色 (Neon) | | cmd:img-artify duotone:neon
+# @menu: duo_oce     | art_duo | 深海藍調 (Ocean) | | cmd:img-artify duotone:ocean
+
 _img_artify_duotone() {
     local f=$1 output=$2 style=$3
     local sub_style=${style#*:}

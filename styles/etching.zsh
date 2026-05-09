@@ -1,6 +1,11 @@
 #!/bin/zsh
 # styles/etching.zsh - 蝕刻與材質雕刻風格模組 (V5.6 精確修正版)
 
+# @menu: etc_pap     | cat_etching | 🎨 畫紙蝕刻 | 白色線條原始效果 | cmd:img-artify etching:paper
+# @menu: etc_sto     | cat_etching | 🗿 石雕強化 | 深邃的凹凸材質感 | cmd:img-artify etching:stone
+# @menu: etc_sla     | cat_etching | 🌑 黑石蝕刻 | 現代深色石板質感 | cmd:img-artify etching:slate
+# @menu: etc_nan     | cat_etching | 🔱 沈木金雕 | 深木色與金絲高光 | cmd:img-artify etching:nanmu
+
 _img_artify_etching() {
     local f=$1 output=$2 style=$3
     local sub_style=${style#*:}

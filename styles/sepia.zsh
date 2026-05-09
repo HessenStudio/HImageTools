@@ -1,6 +1,14 @@
 #!/bin/zsh
 # styles/sepia.zsh - 專業棕褐懷舊風格模組 (Pro Version)
 
+# @menu: sub_sep_grp | cat_vintage | 🎞️ 棕褐懷舊 | 多層次 Sepia 風格 | folder
+# @menu: sep_std     | sub_sep_grp | 標準棕褐 | 經典懷舊 Sepia | cmd:img-artify sepia
+# @menu: sep_lit     | sub_sep_grp | 明亮棕褐 | 輕量級懷舊感 | cmd:img-artify sepia:light
+# @menu: sep_hvy     | sub_sep_grp | 濃厚棕褐 | 強對比深褐色 | cmd:img-artify sepia:heavy
+# @menu: sep_fad     | sub_sep_grp | 褪色泛黃 | 羊皮紙般的老舊感 | cmd:img-artify sepia:faded
+# @menu: art_ant     | sub_vin_grp | 🕰️ 舊照片 | 帶噪點、褶皺與發霉邊緣 | cmd:img-artify antique
+# @menu: art_aged    | sub_vin_grp | 📜 老照片 | 偏灰褐的相紙質感 | cmd:img-artify aged-photo
+
 _img_artify_sepia() {
     local f=$1 output=$2 style=$3
     local sub_style=${style#*:}

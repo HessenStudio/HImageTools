@@ -1,6 +1,13 @@
 #!/bin/zsh
 # styles/illust.zsh - 清新水彩插圖風格模組 (Fred's Logic 融合版 V9.0)
 
+# @menu: wc_type_a   | sub_wc_grp  | 🌿 清新水彩 (Series A) | 基於 Fred's 積墨邏輯 | folder
+# @menu: wc_std_a    | wc_type_a   | 標準清新 | 平衡渲染與積墨 | cmd:img-artify illust:standard
+# @menu: wc_sft_a    | wc_type_a   | 柔和清新 | 強渲染，低飽和 | cmd:img-artify illust:soft
+# @menu: wc_det_a    | wc_type_a   | 精細清新 | 強化積墨細節 | cmd:img-artify illust:detailed
+# @menu: art_illust  | cat_illust  | 🏢 商務插畫 | 簡潔扁平化商務風格 | cmd:img-artify cartoon:illust
+# @menu: art_clear   | cat_illust  | 🇪🇺 歐式插畫 | Ligne Claire 極簡線條感 | cmd:img-artify cartoon:clear
+
 _img_artify_illust() {
     local f=$1 output=$2 style=$3
     local sub_style=${style#*:}

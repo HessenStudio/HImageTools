@@ -1,6 +1,13 @@
 #!/bin/zsh
 # styles/watercolor.zsh - 標準水彩風格模組 (M4 Optimized)
 
+# @menu: sub_wc_grp  | cat_classic | 💧 水彩系列 (Watercolor) | 清新 vs 傳統雙引擎 | folder
+# @menu: wc_type_b   | sub_wc_grp  | 🎨 傳統水彩 (Series B) | 基於經典暈染濾鏡 | folder
+# @menu: wc_std_b    | wc_type_b   | 標準傳統 | 經典水彩質感 | cmd:img-artify watercolor:standard
+# @menu: wc_wet_b    | wc_type_b   | 濕畫法   | 渲染效果強烈 | cmd:img-artify watercolor:wet
+# @menu: wc_sk_b     | wc_type_b   | 水彩草圖 | 帶鉛筆底線感 | cmd:img-artify watercolor:sketch
+# @menu: wc_sft_b    | wc_type_b   | 柔和擴散 | 低飽和暈染感 | cmd:img-artify watercolor:soft
+
 _img_artify_watercolor() {
     local f=$1 output=$2 style=$3
     local sub_style=${style#*:}

@@ -1,6 +1,15 @@
 #!/bin/zsh
 # styles/oil.zsh - 專業油畫風格模組 (Ultimate V15.0 - The Masterpiece Edition)
 
+# @menu: sub_oil     | cat_classic | 🖼️ 專業油畫 | 古典、印象、表現、厚塗 | folder
+# @menu: oil_cls     | sub_oil | 古典寫實 | 細緻光影質感 | cmd:img-artify oil:classical
+# @menu: oil_imp     | sub_oil | 印象派   | 靈動大師筆觸 | cmd:img-artify oil:impressionist
+# @menu: oil_exp     | sub_oil | 表現主義 | 強烈情感色彩 | cmd:img-artify oil:expressionist
+# @menu: oil_pst     | sub_oil | 厚塗法   | 立體顏料質感 | cmd:img-artify oil:impasto
+# @menu: oil_abs     | sub_oil | 抽象油畫 | 形式解構與區域聚合 | cmd:img-artify oil:abstract
+# @menu: oil_ren     | sub_oil | 文藝復興 | 大師底稿與裂紋質感 | cmd:img-artify oil:renaissance
+# @menu: oil_std     | sub_oil | 標準油畫 | 平衡的繪畫感 | cmd:img-artify oil:standard
+
 _img_artify_oil() {
     local f=$1 output=$2 style=$3
     local sub_style=${style#*:}

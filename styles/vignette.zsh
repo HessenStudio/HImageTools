@@ -1,6 +1,15 @@
 #!/bin/zsh
 # styles/vignette.zsh - 專業暗角效果風格模組 (Pro Version)
 
+# @menu: sub_vig_grp | cat_effects | 🌑 暗角柔邊 (Vignette) | | folder
+# @menu: vig_sft     | sub_vig_grp | 標準柔邊 | | cmd:img-artify vignette:soft
+# @menu: vig_hvy     | sub_vig_grp | 重度暗角 | | cmd:img-artify vignette:heavy
+# @menu: vig_lit     | sub_vig_grp | 輕微暗角 | | cmd:img-artify vignette:light
+# @menu: vig_wht     | sub_vig_grp | 白色柔邊 | | cmd:img-artify vignette:retro-white
+# @menu: vig_clr     | sub_vig_grp | 復古褐調暗角 | | cmd:img-artify vignette:retro-sepia
+# @menu: vig_blu     | sub_vig_grp | 深藍夜色暗角 | | cmd:img-artify vignette:retro-blue
+# @menu: art_lomo    | cat_vintage | 📸 Lomo 隨拍 | 強暗角與鮮豔色彩 | cmd:img-artify lomo
+
 _img_artify_vignette() {
     local f=$1 output=$2 style=$3
     

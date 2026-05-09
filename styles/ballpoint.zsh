@@ -1,6 +1,11 @@
 #!/bin/zsh
 # styles/ballpoint.zsh - 原子筆手繪風格模組 (Python + IM 混合增強版)
 
+# @menu: sub_bp      | cat_classic | 🖊️ 原子筆手繪 | 經典藍色原子筆、筆記本、精細 | folder
+# @menu: bp_nb       | sub_bp | 藍色原子筆 (筆記本) | 經典原子筆帶筆記本底線 | cmd:img-artify ballpoint:notebook
+# @menu: bp_fine     | sub_bp | 藍色原子筆 (細線條) | 纖細、連貫、高質感的純線條 | cmd:img-artify ballpoint:fine
+# @menu: bp_hvy      | sub_bp | 藍色原子筆 (重墨) | 強化線條感的原子筆風格 | cmd:img-artify ballpoint:heavy
+
 _img_artify_ballpoint() {
     local f=$1 output=$2 style=$3
     local sub_style=${style#*:}

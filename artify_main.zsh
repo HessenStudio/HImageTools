@@ -13,77 +13,21 @@ _img_artify_dispatch() {
     # 優化策略：修正方向、縮放至 1920px (寬度優先)、強制 sRGB、8-bit 位深、移除元數據、轉為 MPC 高速格式
     magick "$f" -auto-orient -resize "1920x>" -colorspace sRGB -depth 8 -strip "$work_img"
     
-    # --- 2. 路由至對應濾鏡 (使用優化後的 work_img) ---
-    if [[ "$style" == oil* ]]; then
-        _img_artify_oil "$work_img" "$output" "$style"
-    elif [[ "$style" == sketch* ]]; then
-        _img_artify_sketch "$work_img" "$output" "$style"
-    elif [[ "$style" == charcoal* ]]; then
-        _img_artify_charcoal "$work_img" "$output" "$style"
-    elif [[ "$style" == ballpoint* ]]; then
-        _img_artify_ballpoint "$work_img" "$output" "$style"
-    elif [[ "$style" == watercolor* ]]; then
-        _img_artify_watercolor "$work_img" "$output" "$style"
-    elif [[ "$style" == vin-wc* ]]; then
-        _img_artify_vin_wc "$work_img" "$output" "$style"
-    elif [[ "$style" == lomo* ]]; then
-        _img_artify_lomo "$work_img" "$output" "$style"
-    elif [[ "$style" == vintage* ]]; then
-        _img_artify_vintage "$work_img" "$output" "$style"
-    elif [[ "$style" == cartoon* || "$style" == comic* || "$style" == anime* || "$style" == manga* || "$style" == serial* || "$style" == clear* ]]; then
-        _img_artify_cartoon "$work_img" "$output" "$style"
-    elif [[ "$style" == popart* ]]; then
-        _img_artify_popart "$work_img" "$output" "$style" 
-    elif [[ "$style" == marker* ]]; then
-        _img_artify_marker "$work_img" "$output" "$style"
-    elif [[ "$style" == illust* ]]; then
-        _img_artify_illust "$work_img" "$output" "$style"
-    elif [[ "$style" == handpaint* ]]; then
-        _img_artify_handpaint "$work_img" "$output" "$style"
-    elif [[ "$style" == etching* ]]; then
-        _img_artify_etching "$work_img" "$output" "$style"
-    elif [[ "$style" == abstract* ]]; then
-        _img_artify_abstract "$work_img" "$output" "$style"
-    elif [[ "$style" == pixelate* ]]; then
-        _img_artify_pixelate "$work_img" "$output" "$style"
-    elif [[ "$style" == mosaic* ]]; then
-        _img_artify_mosaic "$work_img" "$output" "$style"
-    elif [[ "$style" == duotone* ]]; then
-        _img_artify_duotone "$work_img" "$output" "$style"
-    elif [[ "$style" == tritone* ]]; then
-        _img_artify_tritone "$work_img" "$output" "$style"
-    elif [[ "$style" == sepia* ]]; then
-        _img_artify_sepia "$work_img" "$output" "$style"
-    elif [[ "$style" == antique* ]]; then
-        _img_artify_antique "$work_img" "$output" "$style"
-    elif [[ "$style" == aged-photo* ]]; then
-        _img_artify_aged_photo "$work_img" "$output" "$style"
-    elif [[ "$style" == night* ]]; then
-        _img_artify_night "$work_img" "$output" "$style"
-    elif [[ "$style" == neon* ]]; then
-        _img_artify_neon "$work_img" "$output" "$style"
-    elif [[ "$style" == twilight* ]]; then
-        _img_artify_twilight "$work_img" "$output" "$style"
-    elif [[ "$style" == vignette* ]]; then
-        _img_artify_vignette "$work_img" "$output" "$style"
-    elif [[ "$style" == solarize* ]]; then
-        _img_artify_solarize "$work_img" "$output" "$style"
-    elif [[ "$style" == swirl* ]]; then
-        _img_artify_swirl "$work_img" "$output" "$style"
-    elif [[ "$style" == monochrome* ]]; then
-        _img_artify_monochrome "$work_img" "$output" "$style"
-    elif [[ "$style" == emboss* ]]; then
-        _img_artify_emboss "$work_img" "$output" "$style"
-    elif [[ "$style" == posterize* ]]; then
-        _img_artify_posterize "$work_img" "$output" "$style"
-    elif [[ "$style" == edge* ]]; then
-        _img_artify_edge "$work_img" "$output" "$style"
-    elif [[ "$style" == invert ]]; then
-        _img_artify_invert "$work_img" "$output" "$style"
-    elif [[ "$style" == chromatic* ]]; then
-        _img_artify_chromatic "$work_img" "$output" "$style"
+    # --- 2. 動態路由至對應插件 (Dynamic Plugin Dispatch) ---
+    # 約定：風格名 'oil' -> 函數 '_img_artify_oil'
+    #       風格名 'aged-photo' -> 函數 '_img_artify_aged_photo'
+    local main_style=${style%%:*}
+    local func_name="_img_artify_${main_style//-/_}"
+
+    if (( $+functions[$func_name] )); then
+        "$func_name" "$work_img" "$output" "$style"
     else
-        _img_artify_misc "$work_img" "$output" "$style"
+        # 嘗試回退到通用處理或顯示錯誤
+        if (( $+functions[_img_artify_misc] )); then
+            _img_artify_misc "$work_img" "$output" "$style"
+        else
+            echo "❌ 找不到插件: $main_style (需定義 $func_name)"
+        fi
     fi
 
     # --- 3. 任務收尾：清理預處理臨時文件 ---

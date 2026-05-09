@@ -1,6 +1,8 @@
 #!/bin/zsh
 # styles/artify_all.zsh - 一鍵生成全風格藝術畫廊
 
+# @menu: art_all     | artify_root | 🚀 一鍵藝術化全家桶 | 自動生成 100+ 種全風格畫廊 | input:請輸入圖片目錄路徑:./:img-artify-all
+
 img-artify-all() {
     local target_dir=${1:-.}
     # 移除末尾斜槓以避免 // 問題

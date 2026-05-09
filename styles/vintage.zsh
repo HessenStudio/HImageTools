@@ -1,6 +1,11 @@
 #!/bin/zsh
 # styles/vintage.zsh - 專業復古與時光印記模組 (Ultimate V22.0 - Constant Visual Scale)
 
+# @menu: sub_vin_grp | cat_vintage | 🎞️ 復古底片 | 經典膠卷、噪點、痕跡 | folder
+# @menu: vin_std     | sub_vin_grp | 標準復古 | 膠片感與輕微噪點 | cmd:img-artify vintage
+# @menu: vin_film    | sub_vin_grp | 經典膠卷 | 模擬真實底片色調 | cmd:img-artify vintage:film
+# @menu: vin_grain   | sub_vin_grp | 強噪點底片 | 粗糙的顆粒質感 | cmd:img-artify vintage:grain
+
 _img_artify_vintage() {
     local f=$1 output=$2 style=$3
     local sub_style=${style#*:}

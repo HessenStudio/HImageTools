@@ -1,6 +1,13 @@
 #!/bin/zsh
 # rembg.zsh - 背景移除工具集 (背景靜默優化版)
 
+#!/bin/zsh
+# rembg.zsh - 背景移除工具集 (背景靜默優化版)
+
+# @menu: rem_ai      | rembg_root | 🧠 AI 智慧去背 | 自動識別主體 | cmd:img-ai-rembg
+# @menu: rem_wht     | rembg_root | ✂️ 一鍵去白 | 移除白色背景 | cmd:img-rembg white 10%
+# @menu: rem_blk     | rembg_root | ✂️ 一鍵去黑 | 移除黑色背景 | cmd:img-rembg black 10%
+
 # 8. 批量去除背景 (ImageMagick 版本)
 img-rembg() {
     local color=${1:-white}

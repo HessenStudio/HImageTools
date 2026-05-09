@@ -1,6 +1,21 @@
 #!/bin/zsh
 # basic.zsh - 基礎格式轉換與處理工具 (V4.5 安全路徑與全進度條版)
 
+# @menu: bas_grp_conv | basic_root | 🔄 格式轉換 | PNG, JPG, WebP | folder
+# @menu: bas_grp_size | basic_root | 📐 縮放與剪裁 | 縮放、剪裁、旋轉 | folder
+# @menu: bas_grp_opt  | basic_root | ⚡️ 壓縮與優化 | 無損壓縮、質量優化 | folder
+# @menu: bas_gif      | basic_root | 🎞️ 合併為 GIF | 將當前圖片序列化為動圖 | folder
+# @menu: bas_png      | bas_grp_conv | 🖼️ 轉為 PNG | 標準無損格式 | cmd:img-to-png
+# @menu: bas_jpg      | bas_grp_conv | 📷 轉為 JPG | 高壓縮通用格式 | cmd:img-to-jpg
+# @menu: bas_webp     | bas_grp_conv | 🌐 轉為 WebP | 現代網路優化格式 | cmd:img-to-webp
+# @menu: bas_res      | bas_grp_size | 📏 調整寬度 | 保持比例縮放 | input:請輸入寬度 (預設 1920):1920:img-resize
+# @menu: bas_cro      | bas_grp_size | ✂️ 批量剪裁 | 需輸入幾何參數 | input:請輸入剪裁參數 (寬x高+X+Y):1080x1080+0+0:img-crop
+# @menu: bas_rot      | bas_grp_size | 🔄 批量旋轉 | 順時針旋轉 | input:請輸入旋轉角度 (預設 90):90:img-rotate
+# @menu: bas_opt      | bas_grp_opt | ⚡️ 質量優化 | 降低 JPG 體積 | input:請輸入目標質量 (1-100):75:img-optimize
+# @menu: bas_ls_png   | bas_grp_opt | 💎 無損壓縮 (PNG) | 極限壓縮不損質 | cmd:img-lossless png
+# @menu: bas_ls_web   | bas_grp_opt | 💎 無損壓縮 (WebP) | 極限壓縮不損質 | cmd:img-lossless webp
+# @menu: bas_gif_run  | bas_gif | 🎬 開始生成 GIF | 依據輸入參數合併 | input:請輸入延遲/檔名 (delay:name):20:animation:img-to-gif
+
 # 內部輔助：獲取安全輸出路徑 (解決帶路徑文件問題)
 _img_basic_get_out() {
     local f=$1 ext=$2

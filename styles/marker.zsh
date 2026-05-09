@@ -1,6 +1,70 @@
 #!/bin/zsh
 # styles/marker.zsh - 馬克筆粗輪廓風格組（獨立模組）
 
+# @menu: sub_marker  | cat_illust  | 🖊️ 馬克筆插畫 (Marker) | 56 色專業馬克筆手繪 | folder
+# @menu: mk_pal      | sub_marker | 🎨 生成全色卡預覽 | 查看所有 56 種顏色 | cmd:img-artify marker:palette
+# @menu: mk_grp_gray | sub_marker | 🪙 基礎與灰階 (Basic) | | folder
+# @menu: mk_grp_red  | sub_marker | 🍎 紅粉系列 (Red/Pink) | | folder
+# @menu: mk_grp_yell | sub_marker | 🧀 黃橙大地 (Yellow/Brown) | | folder
+# @menu: mk_grp_gree | sub_marker | 🍃 綠色系列 (Green) | | folder
+# @menu: mk_grp_blue | sub_marker | 🌊 藍紫系列 (Blue/Purple) | | folder
+
+# @menu: mk_black    | mk_grp_gray | 經典黑 (Black) | | cmd:img-artify marker:black
+# @menu: mk_silver   | mk_grp_gray | 銀色 (Silver) | | cmd:img-artify marker:silver
+# @menu: mk_gray     | mk_grp_gray | 灰色 (Gray) | | cmd:img-artify marker:gray
+# @menu: mk_ash      | mk_grp_gray | 灰燼 (Ash Gray) | | cmd:img-artify marker:ash_gray
+# @menu: mk_bgray    | mk_grp_gray | 藍灰 (Blue Gray) | | cmd:img-artify marker:blue_gray
+# @menu: mk_linen    | mk_grp_gray | 亞麻 (Linen) | | cmd:img-artify marker:linen
+# @menu: mk_red      | mk_grp_red | 鮮豔紅 (Red) | | cmd:img-artify marker:red
+# @menu: mk_maroon   | mk_grp_red | 栗紅 (Maroon) | | cmd:img-artify marker:maroon
+# @menu: mk_coral    | mk_grp_red | 珊瑚 (Coral) | | cmd:img-artify marker:coral
+# @menu: mk_amaranth | mk_grp_red | 莧紫 (Amaranth) | | cmd:img-artify marker:amaranth
+# @menu: mk_cerise   | mk_grp_red | 櫻桃 (Cerise) | | cmd:img-artify marker:cerise
+# @menu: mk_hpink    | mk_grp_red | 艷粉 (Hot Pink) | | cmd:img-artify marker:hot_pink
+# @menu: mk_orchid   | mk_grp_red | 蘭花 (Orchid) | | cmd:img-artify marker:orchid
+# @menu: mk_pink     | mk_grp_red | 粉紅 (Pink) | | cmd:img-artify marker:pink
+# @menu: mk_rasp     | mk_grp_red | 覆盆子 (Raspberry) | | cmd:img-artify marker:raspberry
+# @menu: mk_rose     | mk_grp_red | 玫瑰 (Rose) | | cmd:img-artify marker:rose
+# @menu: mk_salmon   | mk_grp_red | 鮭魚 (Salmon) | | cmd:img-artify marker:salmon
+# @menu: mk_scarlet  | mk_grp_red | 猩紅 (Scarlet) | | cmd:img-artify marker:scarlet
+# @menu: mk_yellow   | mk_grp_yell | 活力黃 (Yellow) | | cmd:img-artify marker:yellow
+# @menu: mk_orange   | mk_grp_yell | 活力橘 (Orange) | | cmd:img-artify marker:orange
+# @menu: mk_mango    | mk_grp_yell | 芒果 (Mango) | | cmd:img-artify marker:mango
+# @menu: mk_amber    | mk_grp_yell | 琥珀 (Amber) | | cmd:img-artify marker:amber
+# @menu: mk_brass    | mk_grp_yell | 黃銅 (Brass) | | cmd:img-artify marker:brass
+# @menu: mk_bronze   | mk_grp_yell | 青銅 (Bronze) | | cmd:img-artify marker:bronze
+# @menu: mk_brown    | mk_grp_yell | 褐色 (Brown) | | cmd:img-artify marker:brown
+# @menu: mk_buff     | mk_grp_yell | 米色 (Buff) | | cmd:img-artify marker:buff
+# @menu: mk_coffee   | mk_grp_yell | 咖啡 (Coffee) | | cmd:img-artify marker:coffee
+# @menu: mk_pear     | mk_grp_yell | 梨色 (Pear) | | cmd:img-artify marker:pear
+# @menu: mk_lime     | mk_grp_gree | 萊姆 (Lime) | | cmd:img-artify marker:lime
+# @menu: mk_green    | mk_grp_gree | 森林綠 (Green) | | cmd:img-artify marker:green
+# @menu: mk_olive    | mk_grp_gree | 橄欖 (Olive) | | cmd:img-artify marker:olive
+# @menu: mk_bgreen   | mk_grp_gree | 亮綠 (Bright Green) | | cmd:img-artify marker:bright_green
+# @menu: mk_jade     | mk_grp_gree | 翡翠 (Jade) | | cmd:img-artify marker:jade
+# @menu: mk_sage     | mk_grp_gree | 鼠尾草 (Sage Green) | | cmd:img-artify marker:sage_green
+# @menu: mk_celadon  | mk_grp_gree | 青瓷 (Celadon) | | cmd:img-artify marker:celadon
+# @menu: mk_chart    | mk_grp_gree | 查特酒 (Chartreuse) | | cmd:img-artify marker:chartreuse
+# @menu: mk_grass    | mk_grp_gree | 草原綠 (Grass Green) | | cmd:img-artify marker:grass_green
+# @menu: mk_neon     | mk_grp_gree | 霓虹綠 (Neon Green) | | cmd:img-artify marker:neon_green
+# @menu: mk_pista    | mk_grp_gree | 開心果 (Pistachio) | | cmd:img-artify marker:pistachio
+# @menu: mk_virid    | mk_grp_gree | 翠綠 (Viridian) | | cmd:img-artify marker:viridian
+# @menu: mk_blue     | mk_grp_blue | 經典藍 (Blue) | | cmd:img-artify marker:blue
+# @menu: mk_navy     | mk_grp_blue | 海軍藍 (Navy) | | cmd:img-artify marker:navy
+# @menu: mk_aqua     | mk_grp_blue | 水藍 (Aqua) | | cmd:img-artify marker:aqua
+# @menu: mk_teal     | mk_grp_blue | 藍綠 (Teal) | | cmd:img-artify marker:teal
+# @menu: mk_cadet    | mk_grp_blue | 軍校藍 (Cadet Blue) | | cmd:img-artify marker:cadet_blue
+# @menu: mk_cyan     | mk_grp_blue | 青色 (Cyan) | | cmd:img-artify marker:cyan
+# @menu: mk_denim    | mk_grp_blue | 丹寧 (Denim) | | cmd:img-artify marker:denim
+# @menu: mk_iris     | mk_grp_blue | 鳶尾 (Iris) | | cmd:img-artify marker:iris
+# @menu: mk_robin    | mk_grp_blue | 知更鳥蛋 (Robin Egg Blue) | | cmd:img-artify marker:robin_egg_blue
+# @menu: mk_turq     | mk_grp_blue | 綠松石 (Turquoise) | | cmd:img-artify marker:turquoise
+# @menu: mk_ama      | mk_grp_blue | 海藍寶 (Aquamarine) | | cmd:img-artify marker:aquamarine
+# @menu: mk_verdi    | mk_grp_blue | 銅綠 (Verdigris) | | cmd:img-artify marker:verdigris
+# @menu: mk_fuchs    | mk_grp_blue | 品紅 (Fuchsia) | | cmd:img-artify marker:fuchsia
+# @menu: mk_purple   | mk_grp_blue | 紫色 (Purple) | | cmd:img-artify marker:purple
+# @menu: mk_plum     | mk_grp_blue | 梅紫 (Plum) | | cmd:img-artify marker:plum
+
 _img_marker_get_ink_stroke() {
     local sub_style="${1:l}"
     # 將下劃線替換回空格，以確保相容性與正確匹配

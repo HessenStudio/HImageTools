@@ -1,6 +1,23 @@
 #!/bin/zsh
 # styles/effects.zsh - 其他特殊效果風格模組 (Pro Version)
 
+# @menu: sub_fx_grp  | cat_effects | 🔮 更多特效 | 漩渦、曝光、浮雕 | folder
+# @menu: fx_swl      | sub_fx_grp | 🌀 漩渦扭曲 | 扭曲中心區域 | cmd:img-artify swirl:strong
+# @menu: fx_swl_s    | sub_fx_grp | 🌀 輕微漩渦 | | cmd:img-artify swirl:soft
+# @menu: fx_swl_r    | sub_fx_grp | 🌀 反向漩渦 | | cmd:img-artify swirl:reverse
+# @menu: fx_sol      | sub_fx_grp | ☀️ 曝光過度 | 藝術化曝光效果 | cmd:img-artify solarize
+# @menu: fx_sol_l    | sub_fx_grp | ☀️ 輕度曝光 | | cmd:img-artify solarize:light
+# @menu: fx_emb      | sub_fx_grp | 🖼️ 浮雕效果 | 提取立體質感 | cmd:img-artify emboss:fine
+# @menu: fx_emb_h    | sub_fx_grp | 🖼️ 重度浮雕 | | cmd:img-artify emboss:heavy
+# @menu: fx_pos      | sub_fx_grp | 🎭 色調分離 | 簡化色彩層次 | cmd:img-artify posterize
+# @menu: fx_pos_e    | sub_fx_grp | 🎭 極限分離 | | cmd:img-artify posterize:extreme
+# @menu: fx_edg      | sub_fx_grp | 🖋️ 邊緣提取 | 僅保留輪廓 | cmd:img-artify edge:fine
+# @menu: fx_inv      | sub_fx_grp | 🎞️ 負片反相 | | cmd:img-artify invert
+# @menu: fx_mon      | sub_fx_grp | 🏁 黑白點陣 | | cmd:img-artify monochrome
+# @menu: fx_mon_h    | sub_fx_grp | 🏁 高對比點陣 | | cmd:img-artify monochrome:high
+# @menu: fx_chr_e    | sub_fx_grp | 🌈 強力色散 | | cmd:img-artify chromatic:extreme
+# @menu: art_chr     | cat_effects | 🌈 色散抖音 | 經典 RGB 偏移效果 | cmd:img-artify chromatic
+
 _img_artify_solarize() {
     local f=$1 output=$2 style=$3
     local sub_style=${style#*:}

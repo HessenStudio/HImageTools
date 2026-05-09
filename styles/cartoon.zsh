@@ -1,6 +1,13 @@
 #!/bin/zsh
 # styles/cartoon.zsh - 漫畫/卡通風格模組 (Ultimate V12.0 - The Iron Age Edition)
 
+# @menu: art_anime   | cat_cartoon | 🇯🇵 日系動漫 | V6.3 淡墨版效果 | cmd:img-artify cartoon:anime
+# @menu: art_comic   | cat_cartoon | 🇺🇸 美系漫畫 | 鋼鐵時代風格 | cmd:img-artify cartoon:comic
+# @menu: art_serial  | cat_cartoon | 📜 中式連環畫 | 復古白描筆法 | cmd:img-artify cartoon:serial
+# @menu: art_noir    | cat_cartoon | 🎬 黑色電影 | 硬派高對比黑白 | cmd:img-artify cartoon:noir
+# @menu: art_sketch  | cat_cartoon | ✏️ 漫畫草稿 | 手繪鉛筆底稿 | cmd:img-artify cartoon:sketch
+# @menu: art_outline | cat_cartoon | 🖋️ 純線稿 | 邊緣細線提取 | cmd:img-artify cartoon:outline
+
 _img_artify_cartoon() {
     local f=$1 output=$2 style=$3
     local sub_style=${style#*:}

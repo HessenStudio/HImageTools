@@ -1,6 +1,8 @@
 #!/bin/zsh
 # styles/artify_test.zsh - 一鍵風格自檢工具
 
+# @menu: sys_test    | sys_root | 🧪 一鍵風格自檢 | 驗證所有濾鏡並生成測試報告 | cmd:img-artify-test
+
 img-artify-test() {
     local out_base="./style_test_report"
     

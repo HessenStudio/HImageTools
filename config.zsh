@@ -131,6 +131,27 @@ _img_get_dynamic_jobs() {
 
 MAX_JOBS=${IMAGE_MAX_JOBS:-$(_img_get_dynamic_jobs)}
 
+# --- 📂 插件註冊器 (Plugin Registry) ---
+typeset -g -a IMG_MENU_DATA
+
+_img_registry_build_menu() {
+    # 1. 保留核心/根目錄定義 (如果 menu_manifest 已經定義了部分，這裡追加)
+    # 2. 掃描所有 .zsh 文件中的 @menu 標籤
+    local -a plugin_entries
+    
+    # 使用 grep 快速提取所有標籤
+    # 格式預期：# @menu: ID | ParentID | Title | Desc | Action
+    local raw_data=$(grep -h "^# @menu:" "$_IMG_ROOT"/*.zsh "$_IMG_ROOT"/styles/*.zsh(N) 2>/dev/null)
+    
+    while read -r line; do
+        [[ -z "$line" ]] && continue
+        local entry="${line#*@menu:}"
+        # 去除首尾空格
+        entry="${entry#"${entry%%[![:space:]]*}"}"
+        IMG_MENU_DATA+=("$entry")
+    done <<< "$raw_data"
+}
+
 # 顯示批量處理進度
 _img_show_progress() {
     local current=$1

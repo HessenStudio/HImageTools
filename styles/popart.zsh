@@ -1,6 +1,20 @@
 #!/bin/zsh
 # styles/popart.zsh - 專業普普藝術風格模組 (Ultimate Version 修正版)
 
+# @menu: sub_pop_grp | cat_modern | 🍭 普普藝術 (Pop Art) | 沃荷、李希滕斯坦 | folder
+# @menu: pop_lic     | sub_pop_grp | 李希滕斯坦 | 經典圓點網點與勾邊 | cmd:img-artify popart:lichtenstein
+# @menu: pop_war     | sub_pop_grp | 沃荷絲網 | 2x2 重重複圖案與偏移 | cmd:img-artify popart:warhol
+# @menu: pop_min     | sub_pop_grp | 極簡普普 | 大面積平塗色塊 | cmd:img-artify popart:minimal
+# @menu: pop_col     | sub_pop_grp | 拼貼剪紙 | 實體紙片疊加與投影 | cmd:img-artify popart:collage
+# @menu: pop_ret     | sub_pop_grp | 50s 廣告 | 奶油色調與復古美學 | cmd:img-artify popart:retro
+# @menu: pop_fld     | sub_pop_grp | 色場普普 | 大塊純色視覺衝擊 | cmd:img-artify popart:colorfield
+# @menu: pop_neo     | sub_pop_grp | 霓虹普普 | 螢光色彩與發光 | cmd:img-artify popart:neon
+# @menu: pop_vin     | sub_pop_grp | 60s 復古 | 柔和褪色顆粒感 | cmd:img-artify popart:vintage
+# @menu: pop_str     | sub_pop_grp | 條紋格紋 | 圖案疊加效果 | cmd:img-artify popart:striped
+# @menu: pop_com     | sub_pop_grp | 漫畫網點 | 網點圖案與勾邊 | cmd:img-artify popart:comic
+# @menu: pop_geo     | sub_pop_grp | 幾何抽象 | 抽象形式解構 | cmd:img-artify abstract:geometric
+# @menu: pop_flu     | sub_pop_grp | 流體抽象 | 液化與形式扭曲 | cmd:img-artify abstract:fluid
+
 _img_artify_popart() {
     local f=$1 output=$2 style=$3
     local sub_style=${style#*:}

@@ -1,6 +1,16 @@
 #!/bin/zsh
 # styles/sketch.zsh - 素描與炭筆風格模組 (M4 Optimized)
 
+# @menu: sub_sk      | cat_classic | ✏️ 素描風格 | 精細、粗獷、標準 | folder
+# @menu: sk_std      | sub_sk | 標準素描 | 經典鉛筆質感 | cmd:img-artify sketch
+# @menu: sk_fine     | sub_sk | 精細素描 | 細膩線條描繪 | cmd:img-artify sketch:fine
+# @menu: sk_hvy      | sub_sk | 粗獷素描 | 強力對比與重筆觸 | cmd:img-artify sketch:heavy
+
+# @menu: sub_ch      | cat_classic | ✒️ 炭筆風格 | 標準、重墨、顆粒 | folder
+# @menu: ch_std      | sub_ch | 標準炭筆 | 炭條繪畫感 | cmd:img-artify charcoal
+# @menu: ch_hvy      | sub_ch | 重墨炭筆 | 濃郁的黑白對比 | cmd:img-artify charcoal:heavy
+# @menu: ch_grn      | sub_ch | 顆粒炭筆 | 強烈的炭粉質感 | cmd:img-artify charcoal:grain
+
 _img_artify_sketch() {
     local f=$1 output=$2 style=$3
     local sub_style=${style#*:}

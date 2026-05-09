@@ -1,6 +1,13 @@
 #!/bin/zsh
 # styles/vin_wc.zsh - 復古水彩混合風格模組 (M4 終極穩定版 + 極限手撕邊緣)
 
+# @menu: sub_vwc_grp | cat_vintage | 📜 復古水彩 | 手撕邊與衰敗質感 | folder
+# @menu: vwc_std     | sub_vwc_grp | 標準復古水彩 | 懷舊水彩質感 | cmd:img-artify vin-wc
+# @menu: vwc_dec     | sub_vwc_grp | 衰敗侵蝕 | 極限手撕邊與褪色 | cmd:img-artify vin-wc:decay
+# @menu: vwc_hvy     | sub_vwc_grp | 厚重復古 | 高對比與濃郁色調 | cmd:img-artify vin-wc:heavy
+# @menu: vwc_vib     | sub_vwc_grp | 鮮豔復古 | 強化色彩的懷舊感 | cmd:img-artify vin-wc:vibrant
+# @menu: vwc_ant     | sub_vwc_grp | 極致考古 | 極限殘破與羊皮紙質感 | cmd:img-artify vin-wc:antique
+
 _img_artify_vin_wc() {
     local f=$1 output=$2 style=$3
     local sub_style=${style#*:}

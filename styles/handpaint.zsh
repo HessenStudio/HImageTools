@@ -1,6 +1,12 @@
 #!/bin/zsh
 # styles/handpaint.zsh - 手繪插畫風格模組 (Series C: Fred's Logic 強化版)
 
+# @menu: sub_hp_grp  | cat_illust  | 🖍️ 手繪彩繪 (Hand-Painted) | 結構墨線與色塊填充 | folder
+# @menu: hp_std      | sub_hp_grp | 標準手繪 | 結構清晰，色塊均勻 | cmd:img-artify handpaint
+# @menu: hp_vib      | sub_hp_grp | 鮮豔插畫 | 高飽和，強對比 | cmd:img-artify handpaint:vibrant
+# @menu: hp_soft     | sub_hp_grp | 清新淡雅 | 灰墨線，淡色調 | cmd:img-artify handpaint:soft
+# @menu: hp_hvy      | sub_hp_grp | 厚重藝術 | 強墨線，濃郁感 | cmd:img-artify handpaint:heavy
+
 _img_artify_handpaint() {
     local f=$1 output=$2 style=$3
     local sub_style=${style#*:}

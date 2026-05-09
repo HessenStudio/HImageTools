@@ -1,6 +1,11 @@
 #!/bin/zsh
 # styles/pixelate.zsh - 專業像素藝術風格模組 (Pro Version)
 
+# @menu: art_pix     | cat_modern | 像素藝術 | 8-bit 遊戲感 | folder
+# @menu: pix_8bt     | art_pix | 8-Bit 經典 | 復古遊戲質感 | cmd:img-artify pixelate:8bit
+# @menu: pix_16bt    | art_pix | 16-Bit 精細 | 較細膩的像素感 | cmd:img-artify pixelate:16bit
+# @menu: pix_chk     | art_pix | 粗糙像素 | 誇張的大塊像素 | cmd:img-artify pixelate:chunky
+
 _img_artify_pixelate() {
     local f=$1 output=$2 style=$3
     local sub_style=${style#*:}
