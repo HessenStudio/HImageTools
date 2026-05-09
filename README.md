@@ -89,7 +89,31 @@ Designed for environment verification or development debugging. Runs all filters
 
 ---
 
-## 🛠️ Batch utilities
+## 🔌 Plugin Architecture (V5.0+)
+
+HImageTools now features a fully automated **Plugin-based Architecture**. Features, routes, and menu items are dynamically discovered at runtime.
+
+### How it works
+1. **Auto-Discovery**: `loader.sh` automatically scans and sources all `.zsh` files in the `styles/` directory.
+2. **Metadata Tags**: Any `.zsh` file can register itself into the interactive menu using `# @menu:` tags.
+3. **Dynamic Routing**: Commands like `img-artify <style>` are automatically routed to a function named `_img_artify_<style>`.
+
+### Developer Guide: Adding a new style
+1. **Create a file**: Add `styles/my_style.zsh`.
+2. **Add Metadata**: Add menu tags at the top:
+   ```zsh
+   # @menu: my_id | cat_classic | My New Style | Cool description | cmd:img-artify my_style
+   ```
+3. **Define the function**:
+   ```zsh
+   _img_artify_my_style() {
+       local f=$1 output=$2 style=$3
+       magick "$f" -sepia-tone 80% "$output"
+   }
+   ```
+No other files need to be modified. The style will automatically appear in `img-menu` and be accessible via `img-artify`.
+
+---
 
 All write under `./processed/` (created if missing).
 

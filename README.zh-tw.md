@@ -87,7 +87,31 @@ source ./loader.sh
 
 ---
 
-## 🛠️ 基礎工具（批量）
+## 🔌 插件化架構 (V5.0+)
+
+HImageTools 現在採用完全自動化的 **插件化架構 (Plugin-based Architecture)**。功能、路由與選單項目均在執行時動態發現。
+
+### 運作原理
+1. **自動發現**：`loader.sh` 會自動掃描並載入 `styles/` 目錄下所有的 `.zsh` 文件。
+2. **元數據標籤**：任何 `.zsh` 文件都可以透過 `# @menu:` 標籤將自己註冊到互動式選單中。
+3. **動態路由**：`img-artify <風格>` 指令會自動跳轉至名為 `_img_artify_<風格>` 的函數。
+
+### 開發者指南：新增一種風格
+1. **建立文件**：在 `styles/` 下新增 `my_style.zsh`。
+2. **添加元數據**：在文件頂部添加菜單標籤：
+   ```zsh
+   # @menu: my_id | cat_classic | 我的新風格 | 酷炫的描述 | cmd:img-artify my_style
+   ```
+3. **定義函數**：
+   ```zsh
+   _img_artify_my_style() {
+       local f=$1 output=$2 style=$3
+       magick "$f" -sepia-tone 80% "$output"
+   }
+   ```
+不需要修改任何其他文件。該風格會自動出現在 `img-menu` 中，並可透過 `img-artify` 調用。
+
+---
 
 輸出目錄：`./processed/`（不存在則自動建立）。
 
