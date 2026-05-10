@@ -135,8 +135,15 @@ MAX_JOBS=${IMAGE_MAX_JOBS:-$(_img_get_dynamic_jobs)}
 typeset -g -a IMG_MENU_DATA
 
 _img_registry_build_menu() {
-    # 1. 保留核心/根目錄定義 (如果 menu_manifest 已經定義了部分，這裡追加)
-    # 2. 掃描所有 .zsh 文件中的 @menu 標籤
+    # 重置清單，防止重複疊加
+    IMG_MENU_DATA=()
+    
+    # 1. 加載核心/根目錄定義 (靜態部分)
+    if [[ -f "$_IMG_ROOT/menu_manifest.zsh" ]]; then
+        source "$_IMG_ROOT/menu_manifest.zsh"
+    fi
+
+    # 2. 掃描所有 .zsh 文件中的 @menu 標籤 (動態部分)
     local -a plugin_entries
     
     # 使用 grep 快速提取所有標籤

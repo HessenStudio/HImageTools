@@ -132,6 +132,11 @@ _img_render_ui() {
 }
 
 img-menu() {
+    # 🌟 [熱加載] 啟動選單前重新掃描 styles 目錄並重建註冊表
+    # 這確保了手動新增/修改文件後，不需要重啟終端即可生效
+    for f in "$_IMG_ROOT"/styles/*.zsh(N); do source "$f"; done
+    _img_registry_build_menu
+    
     _IMG_NAV_STACK=("0")
     while true; do
         local current_pid="${_IMG_NAV_STACK[-1]}"
