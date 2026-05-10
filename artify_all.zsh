@@ -2,6 +2,27 @@
 # artify_all.zsh - 一鍵生成全風格藝術畫廊 (V5.0 插件化版)
 
 # @menu: art_all     | artify_root | 🚀 一鍵藝術化全家桶 | 自動生成 100+ 種全風格畫廊 | input:請輸入圖片目錄路徑:./:img-artify-all
+# @menu: art_ref     | artify_root | 🔄 刷新畫廊索引 | 掃描並更新畫廊 index.html | input:請輸入畫廊目錄路徑:./artify_gallery:img-gallery-refresh
+
+# 刷新畫廊索引 (適用於手動合併多批次圖片的場景)
+img-gallery-refresh() {
+    local base=${1:-./artify_gallery}
+    # 移除末尾斜槓
+    base=${base%/}
+
+    if [[ ! -d "$base" ]]; then
+        echo "❌ 畫廊目錄不存在: $base"
+        return 1
+    fi
+
+    echo "🔄 正在重新掃描並構建畫廊索引: $base ..."
+    _img_generate_gallery_html "$base"
+    
+    if [[ $? -eq 0 ]]; then
+        echo "✅ 畫廊索引刷新完成！"
+        echo "🌐 畫廊已更新: $base/index.html"
+    fi
+}
 
 img-artify-all() {
     local target_dir=${1:-.}
