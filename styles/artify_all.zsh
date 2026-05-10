@@ -39,13 +39,18 @@ img-artify-all() {
     echo "-----------------------------------------------"
 
     mkdir -p "$out_base"
+    mkdir -p "${out_base}/originals"
 
     local img_count=0
     for f in "${files[@]}"; do
         ((img_count++))
         local stem=$(basename "${f%.*}")
+        local ext="${f##*.}"
         local img_out_dir="${out_base}/${stem}"
         mkdir -p "$img_out_dir"
+        
+        # 複製原圖到 originals 目錄以便網頁顯示對比
+        cp "$f" "${out_base}/originals/${stem}.${ext}"
         
         echo "🖼️  [%d/%d] 正在渲染原圖: %s" "$img_count" "${#files[@]}" "$f"
         
@@ -91,15 +96,19 @@ _img_generate_gallery_html() {
     local json_data="const artifyData = {"
     for d in "${base}"/*(/); do
         local stem=$(basename "$d")
-        [[ "$stem" == "assets" ]] && continue
+        [[ "$stem" == "assets" || "$stem" == "originals" ]] && continue
         
-        json_data+="\"$stem\": ["
+        # 尋找對應的原圖文件
+        local original_file=$(ls "${base}/originals/${stem}".* | head -n 1)
+        local original_basename=$(basename "$original_file")
+        
+        json_data+="\"$stem\": { \"original\": \"originals/$original_basename\", \"styles\": ["
         for img in "$d"/*.png; do
             local style_name=$(basename "$img" .png)
             json_data+="\"$style_name\","
         done
         json_data=${json_data%?} 
-        json_data+="],"
+        json_data+="] },"
     done
     json_data=${json_data%?}
     json_data+="};"
@@ -133,6 +142,7 @@ _img_generate_gallery_html() {
         .master-item img { width: 100%; height: 120px; object-fit: cover; display: block; opacity: 0.6; }
         .master-item.active img { opacity: 1; }
         .master-item .meta { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); padding: 5px 10px; font-size: 11px; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .tag-original { position: absolute; top: 5px; right: 5px; background: var(--accent); color: #000; font-size: 9px; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
 
         /* Main Content: Style Gallery */
         main { flex: 1; overflow-y: auto; padding: 40px; scroll-behavior: smooth; position: relative; }
@@ -144,12 +154,14 @@ _img_generate_gallery_html() {
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Cards */
-        .card { background: var(--card); border-radius: 12px; overflow: hidden; cursor: pointer; border: 1px solid #222; transition: 0.3s; }
+        .card { background: var(--card); border-radius: 12px; overflow: hidden; cursor: pointer; border: 1px solid #222; transition: 0.3s; position: relative; }
         .card:hover { border-color: var(--accent); transform: scale(1.02); }
+        .card.is-original { border-style: dashed; border-color: #555; }
         .img-box { width: 100%; height: 200px; background: #000; overflow: hidden; }
         .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .card:hover .img-box img { object-fit: contain; }
         .info { padding: 12px; text-align: center; font-size: 12px; font-family: monospace; color: var(--text-dim); }
+        .card.is-original .info { color: var(--accent); }
 
         /* Lightbox */
         #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 40px; cursor: zoom-out; }
@@ -199,9 +211,10 @@ _img_generate_gallery_html() {
             const item = document.createElement('div');
             item.className = 'master-item' + (index === 0 ? ' active' : '');
             item.id = 'master-' + stem;
-            const coverImg = stem + '/' + artifyData[stem][0] + '.png';
+            const coverImg = artifyData[stem].original;
             item.innerHTML = \`
                 <img src="\${coverImg}" loading="lazy">
+                <div class="tag-original">ORIGINAL</div>
                 <div class="meta">\${stem}</div>
             \`;
             item.onclick = () => selectMaster(stem);
@@ -217,13 +230,27 @@ _img_generate_gallery_html() {
         document.querySelectorAll('.master-item').forEach(el => el.classList.remove('active'));
         document.getElementById('master-' + stem).classList.add('active');
 
+        const data = artifyData[stem];
+
         // 更新標題
         currentTitle.firstChild.textContent = stem + ' ';
-        currentCount.innerText = artifyData[stem].length + ' Styles';
+        currentCount.innerText = data.styles.length + ' Styles';
 
         // 渲染網格
         styleGrid.innerHTML = '';
-        artifyData[stem].forEach(style => {
+        
+        // 1. 先加入原圖卡片 (方便直接對比)
+        const origCard = document.createElement('div');
+        origCard.className = 'card is-original';
+        origCard.innerHTML = \`
+            <div class="img-box"><img src="\${data.original}" loading="lazy"></div>
+            <div class="info">ORIGINAL SOURCE</div>
+        \`;
+        origCard.onclick = () => openLightbox(data.original, 'ORIGINAL SOURCE');
+        styleGrid.appendChild(origCard);
+
+        // 2. 加入所有風格卡片
+        data.styles.forEach(style => {
             const card = document.createElement('div');
             card.className = 'card';
             const imgPath = stem + '/' + style + '.png';
