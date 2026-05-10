@@ -20,6 +20,8 @@ done
 source "$_IMG_ROOT/interactive_menu.zsh"
 source "$_IMG_ROOT/config.zsh" # 再次加載以確保覆蓋
 source "$_IMG_ROOT/menu_manifest.zsh"
+source "$_IMG_ROOT/artify_all.zsh"
+source "$_IMG_ROOT/artify_test.zsh"
 source "$_IMG_ROOT/artify_main.zsh"
 
 # 6. 啟動插件註冊掃描
